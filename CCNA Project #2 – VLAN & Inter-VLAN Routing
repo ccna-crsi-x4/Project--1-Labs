@@ -134,6 +134,20 @@ Solution: Verified access port VLAN assignment
 📈 Conclusion
 This project successfully implemented VLAN segmentation and Inter-VLAN Routing using Router-on-a-Stick method. It reflects real-world enterprise network practices for better security, performance, and manageability.
 
+
+TO DO:
+
+Maglagay ka ng screenshots:
+
+show vlan brief
+show interfaces trunk
+Successful ping
+
+Lagyan  ng diagram na may VLAN labels (colored if possible)
+
+Gumawa ka ng Layer 3 Switch version (advanced version 💣)
+
+
 👨‍💻 Author
 Chanox – CCNA Trainee | Aspiring Network Engineer
 
