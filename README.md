@@ -95,5 +95,12 @@ Solution: Added correct static routes on both routers
 📈 Conclusion
 This project successfully demonstrates the configuration of a basic routed network using static routing. It strengthens foundational CCNA skills in network design, IP addressing, and routing.
 
+
+### TO DO 
+Upload the ping result here (Screenshot)
+Upload CLI Config
+
+
+
 👨‍💻 Author
 Chanox – CCNA Trainee | Aspiring Network Engineer
