@@ -1,0 +1,141 @@
+CCNA-Project-2-VLAN-InterVLAN-Routing/README.md
+
+
+
+Add CCNA Project #2 - VLAN & Inter-VLAN Routing
+
+
+
+# CCNA Project #2 – VLAN & Inter-VLAN Routing (Router-on-a-Stick)
+
+![CCNA](https://img.shields.io/badge/CCNA-Project-blue)
+![VLAN](https://img.shields.io/badge/VLAN-802.1Q-green)
+![Router-on-a-Stick](https://img.shields.io/badge/Router_on_a_Stick-orange)
+
+## 📌 Project Overview
+This project demonstrates how to segment a network using **VLANs** and enable communication between them using **Inter-VLAN Routing (Router-on-a-Stick)**.
+
+The goal is to improve network organization, security, and efficiency while maintaining connectivity across departments.
+
+---
+
+## 🏢 Business Scenario
+A company wants to logically separate its departments into different VLANs:
+
+- **VLAN 10 – HR Department**
+- **VLAN 20 – IT Department**
+- **VLAN 30 – Sales Department**
+
+---
+
+## 🗺️ Network Topology
+
+![CCNA Project 2 - VLAN & Inter-VLAN Routing](topology-vlan.png)
+
+*Router-on-a-Stick setup with trunk link between Switch and Router*
+
+---
+
+## 🌐 VLAN & IP Addressing Plan
+
+| VLAN | Department | Network Address   | Subnet Mask     | Gateway         |
+|------|------------|-------------------|-----------------|-----------------|
+| 10   | HR         | 192.168.10.0/24   | 255.255.255.0   | 192.168.10.1    |
+| 20   | IT         | 192.168.20.0/24   | 255.255.255.0   | 192.168.20.1    |
+| 30   | Sales      | 192.168.30.0/24   | 255.255.255.0   | 192.168.30.1    |
+
+---
+
+## ⚙️ Configuration
+
+### 🔹 Switch Configuration (SW1)
+
+```cisco
+vlan 10
+ name HR
+vlan 20
+ name IT
+vlan 30
+ name SALES
+
+interface range fa0/1 - 2
+ switchport mode access
+ switchport access vlan 10
+
+interface range fa0/3 - 4
+ switchport mode access
+ switchport access vlan 20
+
+interface range fa0/5 - 6
+ switchport mode access
+ switchport access vlan 30
+
+interface fa0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+
+
+
+🔹 Router Configuration (Router-on-a-Stick)
+
+interface g0/0
+ no shutdown
+
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface g0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface g0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+
+
+🧪 Verification & Testing
+On Switch
+
+show vlan brief
+show interfaces trunk
+show interfaces fa0/24 switchport
+
+# On Router
+show ip interface brief
+show vlans
+
+Inter-VLAN Ping Test:
+
+ping 192.168.20.10     # From VLAN 10 PC to VLAN 20
+ping 192.168.30.10     # From VLAN 10 PC to VLAN 30
+
+🔍 Key Concepts Demonstrated
+
+VLAN Segmentation
+Access Ports vs Trunk Ports
+802.1Q Encapsulation
+Router-on-a-Stick (Subinterfaces)
+Inter-VLAN Routing
+Network Security through Segmentation
+
+
+⚠️ Issues Encountered & Resolutions
+
+Issue: No communication between VLANs
+Solution: Added encapsulation dot1Q on subinterfaces
+Issue: VLAN traffic not passing through trunk
+Solution: Configured switchport trunk allowed vlan 10,20,30
+Issue: PCs in same VLAN cannot communicate
+Solution: Verified access port VLAN assignment
+
+
+📈 Conclusion
+This project successfully implemented VLAN segmentation and Inter-VLAN Routing using Router-on-a-Stick method. It reflects real-world enterprise network practices for better security, performance, and manageability.
+
+👨‍💻 Author
+Chanox – CCNA Trainee | Aspiring Network Engineer
+
+
+
